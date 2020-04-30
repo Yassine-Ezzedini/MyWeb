@@ -1,0 +1,24 @@
+categorie_index:
+    path:     /
+    defaults: { _controller: "minipoBundle:Categorie:index" }
+    methods:  GET
+
+categorie_show:
+    path:     /{idcateg}/show
+    defaults: { _controller: "minipoBundle:Categorie:show" }
+    methods:  GET
+
+categorie_new:
+    path:     /new
+    defaults: { _controller: "minipoBundle:Categorie:new" }
+    methods:  [GET, POST]
+
+categorie_edit:
+    path:     /{idcateg}/edit
+    defaults: { _controller: "minipoBundle:Categorie:edit" }
+    methods:  [GET, POST]
+
+categorie_delete:
+    path:     /{idcateg}/delete
+    defaults: { _controller: "minipoBundle:Categorie:delete" }
+    methods:  DELETE

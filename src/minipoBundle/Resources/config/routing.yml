@@ -1,3 +1,7 @@
+minipo_categorie:
+    resource: "@minipoBundle/Resources/config/routing/categorie.yml"
+    prefix:   /employe/categorie
+
 minipo_homepage:
     path:     /
     defaults: { _controller: minipoBundle:Default:indexclientexterne }
