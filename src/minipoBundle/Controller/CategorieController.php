@@ -16,14 +16,21 @@ class CategorieController extends Controller
      * Lists all categorie entities.
      *
      */
-    public function indexAction()
+    public function indexAction( Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('minipoBundle:Categorie')->findAll();
 
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $categories,
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
         return $this->render('categorie/index.html.twig', array(
-            'categories' => $categories,
+            'categories' => $pagination,
         ));
     }
 
