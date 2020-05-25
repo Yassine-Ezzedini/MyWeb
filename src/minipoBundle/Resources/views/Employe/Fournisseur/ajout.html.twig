@@ -1,0 +1,55 @@
+{% extends 'baseEmp.html.twig' %}
+{% block title %}{{ msg }} {% endblock %}
+{% block content %}
+<div class="align-self-center">
+    <h1> {{ msg }}</h1>
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    <table width="80%">
+        {{ form_start(form) }}
+        <thead>
+            <tr>
+                <td>{{ form_label(form.nom) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.nom) }}
+                    {{ form_errors(form.nom) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.prenom) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.prenom) }}
+                    {{ form_errors(form.prenom) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.email) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.telephone) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.telephone) }}
+                    {{ form_errors(form.telephone) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.adresse) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.adresse) }}
+                    {{ form_errors(form.adresse) }}
+                </td>
+            </tr>
+        </thead>
+
+    </table>
+{{ form_rest(form) }}
+</div>
+    <a href="{{path('fournisseur_index')}}" class="btn btn-info">Cancel</a>
+    <input type="submit" value="{{msg}}" class="btn btn-primary" >
+    {{ form_end(form) }}
+
+
+{% endblock %}

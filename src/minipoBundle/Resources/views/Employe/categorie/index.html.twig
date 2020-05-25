@@ -1,0 +1,47 @@
+{% extends 'baseEmp.html.twig' %}
+{% block title %}Categorie{% endblock %}
+{% block content %}
+    <script src="https://kit.fontawesome.com/e076ed4514.js" crossorigin="anonymous"></script>
+
+    <h1 class="text-center">Liste Des Categories</h1>
+
+    <table class="table table-hover" width="60%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Categorie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.idcateg }}</td>
+                <td>{{ categorie.nom }}</td>
+                <td>
+
+
+                            <button type="button" class="btn btn-danger"><a href="{{ path('categorie_show', { 'idcateg': categorie.idcateg }) }}"><i class="far fa-trash-alt" style="color:white"></i></a></button>
+
+                </td>
+                <td>
+                            <button type="button" class="btn btn-warning"><a href="{{ path('categorie_edit', { 'idcateg': categorie.idcateg }) }}"><i class="fas fa-pen-nib" style="color:white"></i></a></button>
+
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a class="btn btn-success" href="{{ path('categorie_new') }}">Create a new categorie</a>
+
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(categories) }}
+    </div>
+
+
+{% endblock %}

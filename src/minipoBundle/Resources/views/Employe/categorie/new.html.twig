@@ -1,0 +1,36 @@
+{% extends 'baseEmp.html.twig' %}
+
+{% block content %}
+    <style>
+    #divmid, #1,#2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    </style>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6" >
+            <h1 style="text-align: center">Creation d'une Categorie</h1>
+
+                <div id="1">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type="submit" value="Create" />
+                {{ form_end(form) }}
+                </div>
+                <div id>
+                <button><a href="{{ path('categorie_index') }}">Back to the list</a></button>
+                </div>
+
+        </div>
+        <div class="col"></div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

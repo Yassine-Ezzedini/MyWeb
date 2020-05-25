@@ -38,6 +38,7 @@
         "symfony/symfony": "3.4.*",
         "twig/twig": "^1.0||^2.0",
         "vich/uploader-bundle": "^1.4",
+        "willdurand/faker-bundle": "^1.4",
         "yellowskies/qr-code-bundle": "^1.2"
     },
     "require-dev": {

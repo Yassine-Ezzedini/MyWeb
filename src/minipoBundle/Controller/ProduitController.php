@@ -73,11 +73,19 @@ class ProduitController extends Controller
 
     }
 
-    public function affichageAction()
+    public function affichageAction(Request $request)
     {
         //************liste des produits*******************
         $prods = $this->getDoctrine()->getRepository(Produit::class)
             ->findAll();
+
+        //********Pagination produit client******************
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $prods,
+            $request->query->getInt('page', 1)/*page number*/,
+            9/*limit per page*/
+        );
         //************liste des categories*****************
         $cats=$this->getDoctrine()->getRepository(Categorie::class)->findAll();
 
@@ -96,7 +104,7 @@ class ProduitController extends Controller
         $blogs = $em->getRepository('minipoBundle:Articles')->findAll();
 
         //return $this->render('@minipo/Produit/Home.html.twig',$arrayProd);
-        return $this->render('@minipo/Produit/Home.html.twig',array('p'=>$prods,'pc'=>$arrayProd,"blogs" => $blogs));
+        return $this->render('@minipo/Produit/Homepageyacine.html.twig',array('p'=>$prods,'pc'=>$arrayProd,"blogs" => $blogs, 'p'=>$pagination));
 
     }
 

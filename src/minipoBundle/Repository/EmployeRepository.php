@@ -32,6 +32,12 @@ class EmployeRepository extends EntityRepository
 
     }
 
+    //Fournisseur
+    public function findFournisseur(){
+        $qb = $this->getEntityManager()
+            ->createQuery("select u.id, u.firstname, u.lastname, u.email, u.tel, u.adresse FROM minipoBundle:User u WHERE u.genre = 'fournisseur'");
+        return $query =$qb->getResult();
+    }
 
 
 

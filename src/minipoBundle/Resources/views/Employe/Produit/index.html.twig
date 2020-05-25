@@ -1,0 +1,171 @@
+{% extends 'baseEmp.html.twig' %}
+{% block title %}Produit{% endblock %}
+{% block content %}
+    <style>
+        #main {
+            background: #00b09b;
+            background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
+            background: linear-gradient(to right, #a9b7d1, #F0F0F0);
+            min-height: 100vh;
+        }
+
+        .text-gray {
+            color: #aaa;
+        }
+        .card:hover {
+            box-shadow: 0 0 50px rgba(90,0,190,.9);
+        }
+        #danger {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+    </style>
+<div id="main">
+
+    <div class="container py-5">
+        <!-- For Demo Purpose-->
+        <header class="text-center mb-5">
+            <h1 class="display-4 font-weight-bold">Products Section</h1>
+        </header>
+        <!-- search bar-->
+        <form action="{{ path('produit_recherche') }}" method="post">
+            <div class="input-group mb-4">
+                <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon6" class="form-control" name="motcle">
+                <div class="input-group-append">
+                    <button id="button-addon6" type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+        <!-- First Row [Prosucts]-->
+        <h2 class="font-weight-bold mb-2">Overview</h2>
+
+
+
+        <div class="row pb-5 mb-4">
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <!-- Card-->
+
+                <div class="card rounded shadow-sm border-0">
+                    <div class="card-body p-4"><img src="https://res.cloudinary.com/di0bpwchu/image/upload/v1589898595/2822281_mdupap.png" alt="Statistics" class="img-fluid d-block mx-auto mb-3">
+                        <p class="small text-muted font-italic"><h1>{{ ValeurStocktotal }} DT</h1></p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <!-- Card-->
+                <!-- Danger animation-->
+                {% if Qtetotal > 1500 %}
+                <div class="card rounded shadow-sm border-0" id="danger">
+                    <div class="card-body p-4"><img src="https://res.cloudinary.com/di0bpwchu/image/upload/v1589898824/e-commerce_xbrhur.svg" alt="" class="img-fluid d-block mx-auto mb-3">
+                        <p class="small text-muted font-italic" ><h1 style="color: red; font-weight: bold;">{{ Qtetotal }} / 2500</h1></p>
+
+                    </div>
+                </div>
+                {% else %}
+                <div class="card rounded shadow-sm border-0">
+                    <div class="card-body p-4"><img src="https://res.cloudinary.com/di0bpwchu/image/upload/v1589898824/e-commerce_xbrhur.svg" alt="" class="img-fluid d-block mx-auto mb-3">
+                        <p class="small text-muted font-italic" ><h1 style="color: black; font-weight: bold;">{{ Qtetotal }} / 2500</h1></p>
+
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <!-- Card-->
+                <a href="{{path('produit_statistics')}}" class="text-dark">
+                <div class="card rounded shadow-sm border-0">
+                    <div class="card-body p-4"><img src="https://res.cloudinary.com/di0bpwchu/image/upload/v1589899077/bars_qhkxef.svg" alt="" class="img-fluid d-block mx-auto mb-3">
+                        <h5>Statistics</h5>
+                        <p class="small text-muted font-italic">Click here to view advanced statistics</p>
+
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <!-- Card-->
+                <a href="{{ path('produit_ajout') }}" class="text-dark">
+                <div class="card rounded shadow-sm border-0">
+                    <div class="card-body p-4"><img src="https://res.cloudinary.com/di0bpwchu/image/upload/v1589899261/control_hzuqda.svg" alt="" class="img-fluid d-block mx-auto mb-3">
+                        <h2>Ajouter Produit</h2>
+                        <p class="small text-muted font-italic">Click here to add new Product</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- everything here is correct -->
+    <div class="container py-5">
+
+        <!-- For demo purpose -->
+        <div class="row text-center text-white mb-5">
+            <div class="col-lg-7 mx-auto">
+                <h1 class="display-4">Liste des Produits</h1>
+                <p class="lead mb-0">Manage your products here</p>
+            </div>
+        </div>
+        <!-- End -->
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+
+                <!-- List group-->
+                <ul class="list-group shadow">
+
+                    {% for produit in produits %}
+                    <!-- list group item-->
+                    <li class="list-group-item">
+                        <!-- Custom content-->
+                        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                            <div class="media-body order-2 order-lg-1">
+                                <h5 class="mt-0 font-weight-bold mb-2">{{produit.designation}}</h5>
+                                <p class="font-italic text-muted mb-0 small">{{produit.description}}</p>
+                                <div class="d-flex align-items-center justify-content-between mt-1">
+                                    <h6 class="font-weight-bold my-2">Prix: ${{produit.prix}}</h6>
+                                    <h6 class="font-weight-bold my-2">Quantité: {{produit.qtestock}}</h6>
+                                </div>
+                                <h6 class="font-weight-bold my-2">Categorie: {{produit.idcateg.nom}}</h6>
+                                <h6 class="font-weight-bold my-2">Fournisseur: {{produit.idf.nom}}  {{ produit.idf.prenom }}</h6>
+                                <button type="button" class="btn btn-danger"><a style="color: white" href="{{ path('produit_supprimer', {'id': produit.idprod}) }}"><i class="far fa-trash-alt">Delete</i></a></button>
+                                <button type="button" class="btn btn-warning"><a style="color: white" href="#"><i class="far fa-trash-alt">Update</i></a></button>
+                            </div><img src="{{ asset('assetsC/img/products/'~produit.photo) }}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                        </div>
+                        <!-- End -->
+                    </li>
+                    <!-- End -->
+                    {% endfor %}
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(produits) }}
+                    </div>
+
+
+                </ul>
+                <!-- End -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

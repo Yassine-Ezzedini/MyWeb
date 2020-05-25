@@ -4,7 +4,7 @@ categorie_index:
     methods:  GET
 
 categorie_show:
-    path:     /{idcateg}/show
+    path:     /{idcateg}/delete
     defaults: { _controller: "minipoBundle:Categorie:show" }
     methods:  GET
 

@@ -1,0 +1,74 @@
+{% extends 'baseEmp.html.twig' %}
+{% block title %}Statistics{% endblock %}
+{% block content %}
+    <style>
+        .container {
+            padding-top: 80px;
+        }
+        h1 {
+            padding-top: 100px;
+        }
+        div{
+            text-align: center;
+        }
+        img {
+            width: 100px;
+            height: auto;
+        }
+        #total {
+        }
+    </style>
+
+    <h1>Statistics</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h3>Quantité selon Ctageorie</h3>
+                <table class="table table-borderless table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">Categorie</th>
+                        <th scope="col">Quantité</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in produitcateg %}
+                    <tr>
+                        <td>{{c.nom}}</td>
+                        <td>{{c.qte}}</td>
+                        {% endfor %}
+                        <td><img src="https://res.cloudinary.com/di0bpwchu/image/upload/v1590178635/medal_gaj2bk.svg" alt=""></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm">
+                <h3>Quantité selon Fournisseur</h3>
+                <table class="table table-borderless table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">Fournisseur</th>
+                        <th scope="col">Quantité</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for f in produitfournisseur %}
+                    <tr>
+                        <td>{{f.nom}}</td>
+                        <td>{{f.qte}}</td>
+                        {% endfor %}
+                        <td><img src="https://res.cloudinary.com/di0bpwchu/image/upload/v1590178631/trophy_wsv8l8.svg" alt=""></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm">
+                <h3>Total number of orders</h3>
+                <div id="total"><h1 style="font-size:250px; padding-bottom: 500px">{{ totalorders }}</h1></div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('produit_index') }}"><button type="button" class="btn btn-primary">Return</button></a>
+{% endblock %}

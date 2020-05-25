@@ -1,0 +1,15 @@
+fournisseur_index:
+  path:     /fournisseur
+  defaults: { _controller: minipoBundle:Fournisseur:affiche }
+
+fournisseur_ajout:
+  path:     /fournisseur/ajout
+  defaults: { _controller: minipoBundle:Fournisseur:ajout }
+
+fournisseur_supprimer:
+  path:     /fournisseur/supprimer/{id}
+  defaults: { _controller: minipoBundle:Fournisseur:supprimer }
+
+fournisseur_modifier:
+  path:     /fournisseur/modifier/{id}
+  defaults: { _controller: minipoBundle:Fournisseur:modifier }

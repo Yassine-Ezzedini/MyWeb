@@ -1,0 +1,67 @@
+{% extends 'baseEmp.html.twig' %}
+{% block title %}{{ msg }} {% endblock %}
+
+{% block content %}
+    <div class="align-self-center">
+        <h1> {{ msg }}</h1>
+        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+        <table width="80%">
+            {{ form_start(form) }}
+            <thead>
+            <tr>
+                <td>{{ form_label(form.designation) }}<span class="text-danger">*</span></td><td>
+                    {{ form_widget(form.designation) }}
+                    {{ form_errors(form.designation) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.description) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.prix) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.prix) }}
+                    {{ form_errors(form.prix) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.qtestock) }}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.qtestock) }}
+                    {{ form_errors(form.qtestock) }}
+                </td>
+            </tr>
+            <tr>
+                <td>Categorie<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.idcateg) }}
+                    {{ form_errors(form.idcateg) }}
+                </td>
+            </tr>
+            <tr>
+                <td>Fournisseur<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.idf) }}
+                    {{ form_errors(form.idf) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label((form.photo))}}<span class="text-danger">*</span></td>
+                <td>
+                    {{ form_widget(form.photo) }}
+                    {{ form_errors(form.photo) }}
+                </td>
+            </tr>
+            </thead>
+
+        </table>
+        {{ form_rest(form) }}
+    </div>
+    <a href="{{path('produit_index')}}" class="btn btn-info">Cancel</a>
+    <input type="submit" value="{{msg}}" class="btn btn-primary" >
+    {{ form_end(form) }}
+{% endblock %}

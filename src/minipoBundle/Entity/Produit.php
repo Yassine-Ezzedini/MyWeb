@@ -2,6 +2,7 @@
 
 namespace minipoBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,15 +50,6 @@ class Produit
      */
     private $qtestock;
 
-    /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
-     * })
-     */
-    private $id;
 
     /**
      * @var \Categorie
@@ -70,8 +62,19 @@ class Produit
     private $idcateg;
 
     /**
+     * @var \Fournisseur
+     *
+     * @ORM\ManyToOne(targetEntity="Fournisseur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idf", referencedColumnName="idf")
+     * })
+     */
+    private $idf;
+
+    /**
      * @var string
      * @ORM\Column(name="photo", type="string", length=255, nullable=false)
+     * @Assert\File(maxSize="500k", mimeTypes={"image/jpeg", "image/jpg", "image/png", "image/GIF"})
      */
     private $photo;
 
@@ -140,22 +143,6 @@ class Produit
     }
 
     /**
-     * @return \User
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param \User $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return \Categorie
      */
     public function getIdcateg()
@@ -201,6 +188,22 @@ class Produit
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return \Fournisseur
+     */
+    public function getIdf()
+    {
+        return $this->idf;
+    }
+
+    /**
+     * @param \Fournisseur $idf
+     */
+    public function setIdf($idf)
+    {
+        $this->idf = $idf;
     }
 
 

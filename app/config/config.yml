@@ -10,6 +10,8 @@ parameters:
     locale: fr
     photos_directory: '%kernel.root_dir%/../web/uploads/post'
     image_directory:    '%kernel.project_dir%/web/assets/images/img'
+    productimage_directory: '%kernel.project_dir%/web/assetsC/img/products'
+
 
 framework:
     #esi: ~

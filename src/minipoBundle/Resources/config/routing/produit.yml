@@ -1,0 +1,23 @@
+produit_index:
+  path:     /produit
+  defaults: { _controller: minipoBundle:ProduitEmploye:afficheProduitEmploye }
+
+produit_ajout:
+  path:     /produit/ajout
+  defaults: { _controller: minipoBundle:ProduitEmploye:ajoutProduitEmploye }
+
+produit_supprimer:
+  path:     /produit/supprimer/{id}
+  defaults: { _controller: minipoBundle:ProduitEmploye:supprimer }
+
+produit_modifier:
+  path:     /produit/modifier/{id}
+  defaults: { _controller: minipoBundle:ProduitEmploye:modifier }
+
+produit_statistics:
+  path:     /produit/statistics
+  defaults: { _controller: minipoBundle:ProduitEmploye:statistics }
+
+produit_recherche:
+  path:     /produit/recherche
+  defaults: { _controller: minipoBundle:ProduitEmploye:recherche }

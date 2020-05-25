@@ -29,7 +29,7 @@ class CategorieController extends Controller
             5/*limit per page*/
         );
 
-        return $this->render('categorie/index.html.twig', array(
+        return $this->render('@minipo/Employe/categorie/index.html.twig', array(
             'categories' => $pagination,
         ));
     }
@@ -49,10 +49,10 @@ class CategorieController extends Controller
             $em->persist($categorie);
             $em->flush();
 
-            return $this->redirectToRoute('categorie_show', array('idcateg' => $categorie->getIdcateg()));
+            return $this->redirectToRoute('categorie_index');
         }
 
-        return $this->render('categorie/new.html.twig', array(
+        return $this->render('@minipo/Employe/categorie/new.html.twig', array(
             'categorie' => $categorie,
             'form' => $form->createView(),
         ));
@@ -66,7 +66,7 @@ class CategorieController extends Controller
     {
         $deleteForm = $this->createDeleteForm($categorie);
 
-        return $this->render('categorie/show.html.twig', array(
+        return $this->render('@minipo/Employe/categorie/show.html.twig', array(
             'categorie' => $categorie,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,10 +85,10 @@ class CategorieController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('categorie_edit', array('idcateg' => $categorie->getIdcateg()));
+            return $this->redirectToRoute('categorie_index');
         }
 
-        return $this->render('categorie/edit.html.twig', array(
+        return $this->render('@minipo/Employe/categorie/edit.html.twig', array(
             'categorie' => $categorie,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -1,0 +1,27 @@
+{% extends 'baseEmp.html.twig' %}
+
+{% block content %}
+    <style>
+        #divmid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <div class="row">
+    <div class="col"></div>
+    <div class="col-6">
+
+    <h1 style="text-align: center">Are you sure you want to delete <br> the following Categorie: <span style="color:red"> {{ categorie.nom }}</span>  </h1>
+
+            <div id="divmid">
+            <button class="btn btn-success"><a href="{{ path('categorie_index') }}"><span style="color: white">Cancel</span></a></button>
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+            </div>
+    </div>
+    <div class="col"></div>
+    </div>
+{% endblock %}

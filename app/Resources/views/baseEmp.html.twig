@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <meta charset="utf-8">
@@ -21,10 +20,10 @@
             <link href="{{ asset('css/style.css') }}" rel="stylesheet">
             <!-- You can change the theme colors from here -->
             <link href="{{ asset('css/colors/blue.css') }}" id="theme" rel="stylesheet">
-
         {% endblock %}
         {% block new_style %}
         {% endblock %}
+
     </head>
     <body class="fix-header fix-sidebar card-no-border">
 
@@ -121,6 +120,7 @@
                                         </ul>
                                     </div>
                                 </li>
+
                                 <!-- ============================================================== -->
                                 <!-- End Comment -->
                                 <!-- ============================================================== -->
@@ -269,6 +269,13 @@
                         <ul id="sidebarnav">
                             <li class="nav-devider"></li>
                             <li class="nav-small-cap"><a href="base.html.twig"><i class="mdi mdi-home"></i>Acceuil</a></li>
+                            <li>  <a class="has-arrow waves-effect waves-dark"  aria-expanded="false"><i class="mdi mdi-file-document-box"></i><span class="hide-menu">Espace Produit </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="{{ path('produit_index') }}">Gestion Produit </a></li>
+                                    <li><a href="{{ path('fournisseur_index') }}">Gestion Fournisseur </a></li>
+                                    <li><a href="{{ path('categorie_index') }}">Gestion Categorie </a></li>
+                                </ul>
+                            </li>
                             <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-plus"></i><span class="hide-menu">Demande Conge</span></a>
                                 <ul aria-expanded="false" class="collapse">
                                     <li><a href="{{ path('minipo_AjouterConge') }}">Envoyer une demande</a></li>
@@ -283,8 +290,6 @@
                                     </ul>
                                 </li>
                             {% endblock  %}
-
-
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
@@ -309,6 +314,37 @@
                         <!-- ============================================================== -->
                         {% block reclamationclient   %}
                         {% endblock  %}
+
+                        <!-- message de retour partie yacine SUCCESS-->
+                        {% set flashbag_notices = app.session.flashBag.get('notice') %}
+                        {% if flashbag_notices is not empty %}
+                            <ul class="msg">
+                                {% for notice in flashbag_notices %}
+                                    <div class="alert alert-success" role="alert" style="margin-top: 10px">
+                                        <h2 class="alert-heading">Well done! <i class="far fa-thumbs-up"></i></h2>
+                                        <p>{{ notice }}</p>
+                                        <hr>
+                                        <p class="mb-0">Now get back to work <i class="far fa-laugh-beam"></i></p>
+                                    </div>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        <!-- message de retour partie yacine FAIL-->
+                        {% set flashbag_notices = app.session.flashBag.get('warning') %}
+                        {% if flashbag_notices is not empty %}
+                            <ul class="msg">
+                                {% for notice in flashbag_notices %}
+                                    <div class="alert alert-danger" role="alert" style="margin-top: 10px">
+                                        <h2 class="alert-heading">Oh NO! Something went wrong <i class="fas fa-skull-crossbones"></i></h2>
+                                        <p>{{ notice }}</p>
+                                        <hr>
+                                        <p class="mb-0">Delete the product before deleting the Fournisseur</p>
+                                    </div>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
                         {% block content %}
                         {% endblock %}
                         <!-- ============================================================== -->

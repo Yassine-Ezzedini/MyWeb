@@ -2,6 +2,14 @@ minipo_categorie:
     resource: "@minipoBundle/Resources/config/routing/categorie.yml"
     prefix:   /employe/categorie
 
+minipo_fournisseur:
+  resource: "@minipoBundle/Resources/config/routing/fournisseur.yml"
+  prefix:   /employe
+
+minipo_produit:
+  resource: "@minipoBundle/Resources/config/routing/produit.yml"
+  prefix:   /employe
+
 minipo_homepage:
     path:     /
     defaults: { _controller: minipoBundle:Default:indexclientexterne }
